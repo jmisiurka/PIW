@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Italiana&family=Roboto+Flex:opsz,wght@8..144,300..700&display=swap"
+    rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <script src="https://kit.fontawesome.com/0137486fb9.js" crossorigin="anonymous"></script>
+    
+    <title>Tranquil Travels - Scene Retreat</title>
+    
+</head>
+
+<body>
+    <dialog id="contact" class="modal-background">
+        <div class="modal">
+            <button class="button close-button" onclick="contact.close()"><i class="fa fa-regular fa-x"></i></button>
+            <div class="modal-content">
+                <p class="title-large">Contact</p>
+                <p class="text-small">You're contacting the Serene Retreat hotel</p>
+                <textarea class="contact-textbox">
+                </textarea>
+            </div>
+            <div class="modal-buttons">
+                <button class="button" onclick="contact.close()">Cancel</button>
+                <button class="button primary">Send<i class="fa fa-regular fa-envelope"></i></button>
+            </div>
+        </div>
+    </dialog>
+    <nav class="fixed-navigation">
+        <img class="logo" src="./Assets/logo.svg" />
+        <ul class="nav-links">
+            <li><a class="nav-link" href="#">Home</a></li>
+            <li><a class="nav-link" href="#">Find offers</a></li>
+            <li><a class="nav-link" href="#">Add new offers</a></li>
+            <li><a class="nav-link" href="#">My offers</a></li>
+            <li><a class="nav-link" href="#">Favorites</a></li>
+            <button class="button primary">Log out</button>
+        </ul>
+        <button class="button primary hidden">Menu</button>
+    </nav>
+    <section id="hotel" class="grid hotel-section">
+        <article class="hotel-main">
+            <p class="title-large">Serene Retreat</p>
+            <div class="hotel-image"><p class="chip">Add to favorites <i class="fa fa-regular fa-heart"></i></p></div>
+        </article>
+
+        <section class="hotel-info">
+            <article class="hotel-details">
+                <p><b>Location: </b>Madrid
+                    <br />
+                    <b>Local category: </b>★★★★☆
+                    <br />
+                    <b>Price: </b>70€/room/night
+                    <br />
+                    <b>Description:</b>
+                <p class="text-small hotel-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec leo
+                    ligula. Etiam fermentum est in euismod egestas. Curabitur at condimentum ligula. Phasellus nunc velit,
+                    facilisis fermentum congue ac, cursus at leo. Interdum et malesuada fames ac ante ipsum primis in
+                    faucibus. Nullam nec sapien vitae neque scelerisque tempus. Vestibulum hendrerit tellus ut pulvinar
+                    feugiat. Nullam iaculis vitae justo sit amet tempus. Nam nunc nunc, porttitor sed turpis quis, feugiat
+                    egestas leo. Phasellus consequat magna ante, ac aliquam felis convallis sit amet. Sed massa lorem,
+                    iaculis ac vestibulum ac, tempus a tortor. Ut posuere ipsum nec condimentum vehicula. Curabitur orci
+                    velit, aliquam vel arcu quis, semper congue ligula.</p>
+                <button class="button primary" onclick="contact.show()">Contact <i class="fa fa-regular fa-envelope"></i></button>
+            </article>
+            <article class="hotel-photos">
+                <div class="card-image"></div>
+                <div class="card-image"></div>
+            </article>
+            
+        </section>
+    </section>
+    
+</body>
+
+</html>

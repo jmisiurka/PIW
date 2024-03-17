@@ -4,6 +4,7 @@
     --neutral: #E6E9D8;
     --hover: #668000;
     --white: #FFFFFF;
+    --overlay: #50614A88;   /* primary dark with opacity set for 0.5 */
 
     --radius-large: 64px;
     --radius-medium: 32px;
@@ -50,6 +51,10 @@ body{
       "YTLC" 514,
       "YTUC" 712;
 
+}
+
+b {
+    font-weight: 700;
 }
 
 .fixed-navigation {
@@ -142,6 +147,7 @@ body{
     row-gap: 48px;
     justify-content: flex-end;
 }
+
 .hero-image-container{
     border-radius: var(--radius-large);
     grid-column: 8/13;
@@ -155,6 +161,11 @@ body{
 
 
 .title-large{
+    font-family: var(--title-font);
+    font-size: var(--title-large);
+}
+
+.hotel-title{
     font-family: var(--title-font);
     font-size: var(--title-large);
 }
@@ -187,7 +198,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: start;
+    align-items: end;
     padding: 1rem;
 }
 
@@ -210,6 +221,18 @@ body{
     column-gap: 8px;
 }
 
+.heart {
+    background-color: var(--white);
+    padding: 8px 13px;
+    margin-left: auto;
+    border-radius: var(--radius-small);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+}
+
 .browse-section{
     background-color: var(--neutral);
     display: flex;
@@ -219,6 +242,60 @@ body{
     row-gap: 32px;
     justify-content: center;
     align-items: center;
+}
+
+.page-title{
+    padding-top: 100px;
+    padding-left: 64px;
+    width: 100%;
+    height: 27vh;
+}
+
+.browse-image {
+    width: 100%;
+    border-radius: var(--radius-small);
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    padding: 1rem;
+}
+
+.hotel-image {
+    background-image: url(./Assets/cards2.jpg);
+    border-radius: var(--radius-large);
+    height: 80vh;
+    margin-top: 50px;
+    grid-column: 1/6;
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+}
+
+.hotel-section{
+    padding-top: 100px;
+    width: 100%;
+    height: 100vh;
+}
+
+.hotel-details {
+    grid-column: 7/13;
+    display: flex;
+    flex-direction: column;
+    row-gap: 48px;
+    justify-content: flex-start;
+    align-items: start;
+    padding-top: 20vh;
+    line-height: 45px;
 }
 
 .searchbar{
@@ -283,6 +360,42 @@ body{
     justify-content: space-between;
 }
 
+.hotel-photos {
+    grid-column: 7/13;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 50px;
+}
+
+.hotel-photos>.card-image:nth-child(1){
+    background-image: url(./Assets/cards2.jpg);
+    border-radius: var(--radius-medium);
+}
+
+.hotel-photos>.card-image:nth-child(2){
+    background-image: url(./Assets/cards2.jpg);
+    border-radius: var(--radius-medium);
+}
+
+.hotel-main {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10vh;
+    grid-column: 1/6;
+}
+
+.hotel-description {
+    line-height: 30px;   
+}
+
+.hotel-info {
+    display: flex;
+    flex-direction: column;
+    grid-column: 7/13;
+}
+
 .footer{
     padding-top: 96px;
     padding-bottom: 96px;
@@ -304,6 +417,60 @@ body{
     align-items: start;
     padding-left: 36px;
     row-gap: 48px;
+}
+
+.modal-background {
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay); 
+    position:fixed;
+    z-index: 9999; 
+}
+
+.modal {
+    top: 20%;
+    height: 60%;
+    left: 25%;
+    width: 50%;
+    position: absolute;
+    background-color: var(--white);
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border-radius: var(--radius-medium);
+    border-width: 0;
+}
+
+.modal-content {
+    width: 100%;
+    height: 100%;
+    padding: 0px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-buttons {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.contact-textbox {
+    margin-top: 20px;
+    padding: 10px;
+    height: 100%;
+    border-radius: var(--radius-small);
+    width: 100%;
+    resize: none;
+}
+
+.close-button {
+    align-self: flex-end;
+    margin-top: 30px;
+    margin-right: 30px;
 }
 
 .hidden{
