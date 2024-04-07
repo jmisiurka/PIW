@@ -1,0 +1,52 @@
+body {
+    background-color: aliceblue;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.task {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.task-text {
+    width: 30%;
+}
+
+.date {
+    width: 30%;
+}
+
+.task-done>.task-text {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.shown {
+    color: black;
+    background-color: inherit;
+}
+
+.hidden {
+    color: gray;
+    background-color: rgb(230, 240, 240);
+}
+
+.controls {
+    background-color: aliceblue;
+    padding: 10px 30px;
+}
+
+.tasks-section {
+    padding: 0px 30px;
+    background-color: azure;
+}
+
+.form-select {
+    width: 10%;
+    display: inline-block;
+}
