@@ -16,7 +16,6 @@ const HotelCard = ({ id, name, description, city, stars, price, imageURL }) => {
                 city: city,
                 stars: stars,
                 price: price,
-                imageURL: imageURL,
             },
         });
     };

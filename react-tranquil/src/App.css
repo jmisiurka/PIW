@@ -476,12 +476,32 @@ b {
 
 .hotel-details-form {
     display: flex;
+    gap: 20px;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: start;
-    padding-left: 10vh;
+    align-items: center;
     padding-bottom: 10vh;
-    line-height: 45px;
+    /* line-height: 45px; */
+}
+
+.login-form {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.register-form {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .textbox {

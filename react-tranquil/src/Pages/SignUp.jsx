@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import { loginEmail, loginGoogle } from "../data/userService";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { registerEmail } from "../data/userService";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
     const navigate = useNavigate();
 
     const [input, setInput] = useState({ email: "", password: "" });
@@ -16,7 +15,7 @@ const Login = () => {
     };
 
     const handleSubmit = async () => {
-        loginEmail(navigate, input).then(navigate("/"))
+        registerEmail(navigate, input).then(navigate("/"))
     };
 
     return (
@@ -26,11 +25,8 @@ const Login = () => {
                     <p className="title-large">Fill in your offer details</p>
                 </article>
             </section>
-
-            <main className="login-form">
-                <div
-                    className="login-form"
-                >
+            <main className="register-form">
+                <div className="register-form">
                     <label htmlFor="email">
                         <b>E-mail</b>
                     </label>
@@ -40,7 +36,9 @@ const Login = () => {
                         onChange={handleChange}
                         value={input.email}
                     />
-                    <label htmlFor="password"><b>Password</b></label>
+                    <label htmlFor="password">
+                        <b>Password</b>
+                    </label>
                     <input
                         name="password"
                         type="password"
@@ -50,23 +48,12 @@ const Login = () => {
                     />
                     <br></br>
                     <button className="button primary" onClick={handleSubmit}>
-                        Login with E-mail
+                        Register with E-mail
                     </button>
-
-                    <Link to="/sign-up">Create an account</Link>
                 </div>
-
-                <hr style={{ width: "30%" }} />
-                <br />
-                <button
-                    className="button primary"
-                    onClick={() => loginGoogle(navigate)}
-                >
-                    Login with Google
-                </button>
             </main>
         </div>
     );
 };
 
-export default Login;
+export default SignUp;

@@ -1,14 +1,22 @@
 // import { useOutletContext } from "react-router-dom";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
+import { useUser } from "../data/userService";
 
 const Hotel = () => {
     const hotel = useLocation().state;
+    
+    
+    const navigate = useNavigate();
 
-    console.log(hotel);
+    const user = useUser();
+
+    const handleEdit = () => {
+
+    }
 
     return (
         <section id="hotel" className="grid hotel-section">
@@ -25,7 +33,7 @@ const Hotel = () => {
                 <article className="hotel-details">
                     <p>
                         <b>Location: </b>
-                        {hotel.city}
+                        {hotel.location}
                         <br />
                         <b>Local category: </b>
                         {"★".repeat(hotel.stars) + "☆".repeat(5 - hotel.stars)}
@@ -43,6 +51,16 @@ const Hotel = () => {
                         >
                             Contact <FontAwesomeIcon icon={faEnvelope} />
                         </button>
+
+                        {!!user && (
+                            <button
+                                className="button primary"
+                                onclick={handleEdit}
+                            >
+                                Edit hotel info{" "}
+                                <FontAwesomeIcon icon={faEnvelope} />
+                            </button>
+                        )}
                     </p>
                 </article>
                 <article className="hotel-photos">
