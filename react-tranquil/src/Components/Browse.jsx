@@ -42,6 +42,11 @@ const Browse = (hotels) => {
                     value={query}
                     onChange={handleSearch}
                 />
+                Sort by:
+                <select id="sort">
+                    <option>Date</option>
+                    <option></option>
+                </select>
             </section>
             <section className="grid hotel-cards">{hotelsHTML}</section>
         </div>

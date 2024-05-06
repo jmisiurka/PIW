@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { addOffer } from "../data/offerService";
+import { useEffect, useState } from "react";
+import { addOffer, updateOffer } from "../data/offerService";
 import { useUser } from "../data/userService";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const AddOffer = () => {
+const OfferDetailsForm = () => {
     const user = useUser();
     const navigate = useNavigate();
 
@@ -15,6 +15,13 @@ const AddOffer = () => {
         price: 0,
     });
 
+    const state = useLocation().state;
+    useEffect(() => {
+        if (state != null) {
+            setData(state);
+        }
+    }, [state]);
+
     const handleChange = (e) => {
         setData((prevState) => ({
             ...prevState,
@@ -23,14 +30,25 @@ const AddOffer = () => {
     };
 
     const handleSubmit = async () => {
-        await addOffer(data);//.then(navigate("/"));
+        console.log(data);
+        if (state == null) {
+            const id = await addOffer(data);
+            navigate("/hotel", { state: { id: id } });
+        } else {
+            await updateOffer(state.id, data);
+            navigate("/hotel", { state: { id: state.id } });
+        }
     };
 
     return (
         <div>
             <section className="page-title">
                 <article>
-                    <p className="title-large">Fill in your offer details</p>
+                    <p className="title-large">
+                        {state == null
+                            ? "Fill in your offer details"
+                            : "Edit your offer details"}
+                    </p>
                 </article>
             </section>
             {!!user || (
@@ -114,4 +132,4 @@ const AddOffer = () => {
     );
 };
 
-export default AddOffer;
+export default OfferDetailsForm;

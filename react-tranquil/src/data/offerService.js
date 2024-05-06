@@ -3,6 +3,7 @@ import {
     collection,
     deleteDoc,
     doc,
+    getDoc,
     getDocs,
     query,
     serverTimestamp,
@@ -13,7 +14,7 @@ import { auth, firestore } from "./init";
 
 export const addOffer = async (offer) => {
     console.log(offer);
-    
+
     const tempOffer = {
         name: offer.name || "NOT_PROVIDED",
         location: offer.location || "NOT_PROVIDED",
@@ -26,7 +27,8 @@ export const addOffer = async (offer) => {
 
     const offerCollection = collection(firestore, "offers");
     const docRef = await addDoc(offerCollection, tempOffer);
-    console.log(tempOffer);
+    console.log(docRef.id);
+    return docRef.id;
 };
 
 export const readMyOffers = async () => {
@@ -34,8 +36,6 @@ export const readMyOffers = async () => {
 
     const offerCollection = collection(firestore, "offers");
     const user = auth?.currentUser;
-
-    // console.log("userId: " + user.uid);
 
     if (!user) {
         return offers;
@@ -49,27 +49,21 @@ export const readMyOffers = async () => {
     });
 
     return offers;
-}
+};
 
+// read a single document specified by id
 export const readOfferById = async (id) => {
-    const offerCollection = collection(firestore, "offers");
-    const q = query(offerCollection, where("userId", "===", id));
-    const result = await getDocs(q);
-    
-    if (result.size === 1)
-    {
-        result.forEach((doc) => {
-            return {id: doc.id, ...doc.data()};
-        })
-    }
-}
-    
+    const docRef = doc(firestore, "offers", id);
+    const docSnap = await getDoc(docRef);
+
+    return docSnap.data();
+};
+
 export const readOffers = async () => {
     const offers = [];
 
     const offerCollection = collection(firestore, "offers");
     const user = auth?.currentUser;
-
 
     const q = query(offerCollection);
     const results = await getDocs(q);

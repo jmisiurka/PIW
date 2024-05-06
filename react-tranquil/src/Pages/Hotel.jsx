@@ -1,27 +1,41 @@
-// import { useOutletContext } from "react-router-dom";
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { useUser } from "../data/userService";
+import { readOfferById } from "../data/offerService";
+import { useEffect, useState } from "react";
 
 const Hotel = () => {
-    const hotel = useLocation().state;
-    
-    
-    const navigate = useNavigate();
-
+    const [offer, setOffer] = useState({});
+    const [owner, setOwner] = useState(false);
     const user = useUser();
 
-    const handleEdit = () => {
+    const offerId = useLocation().state.id;
 
-    }
+    console.log(offerId);
+
+    useEffect(() => {
+        readOfferById(offerId).then((doc) => setOffer(doc));
+    }, [offerId]);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // user is null before it loads
+        if (user != null) {
+            setOwner(user.uid === offer.userId);
+        }
+    }, [offer, user]);
+
+    const handleEdit = () => {
+        navigate("/add-offer", { state: { ...offer, id: offerId } });
+    };
 
     return (
         <section id="hotel" className="grid hotel-section">
             <article className="hotel-main">
-                <p className="title-large">{hotel.name}</p>
+                <p className="title-large">{offer.name}</p>
                 <div className="hotel-image">
                     <p className="chip">
                         Add to favorites <FontAwesomeIcon icon={faHeart} />
@@ -33,17 +47,17 @@ const Hotel = () => {
                 <article className="hotel-details">
                     <p>
                         <b>Location: </b>
-                        {hotel.location}
+                        {offer.location}
                         <br />
                         <b>Local category: </b>
-                        {"★".repeat(hotel.stars) + "☆".repeat(5 - hotel.stars)}
+                        {"★".repeat(offer.stars) + "☆".repeat(5 - offer.stars)}
                         <br />
                         <b>Price: </b>
-                        {hotel.price}€/room/night
+                        {offer.price}€/room/night
                         <br />
                         <b>Description:</b>
                         <p className="text-small hotel-description">
-                            {hotel.description}
+                            {offer.description}
                         </p>
                         <button
                             className="button primary"
@@ -51,14 +65,12 @@ const Hotel = () => {
                         >
                             Contact <FontAwesomeIcon icon={faEnvelope} />
                         </button>
-
-                        {!!user && (
+                        {owner && (
                             <button
                                 className="button primary"
-                                onclick={handleEdit}
+                                onClick={handleEdit}
                             >
-                                Edit hotel info{" "}
-                                <FontAwesomeIcon icon={faEnvelope} />
+                                Edit hotel info
                             </button>
                         )}
                     </p>

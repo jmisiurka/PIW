@@ -4,7 +4,7 @@ import Nav from "./Components/Nav";
 import Home from "./Pages/Home";
 import BrowsePage from "./Pages/BrowsePage";
 import Hotel from "./Pages/Hotel";
-import AddOffer from "./Pages/AddOffer";
+import OfferDetailsForm from "./Pages/OfferDetailsForm";
 import MyOffers from "./Pages/MyOffers";
 import Login from "./Pages/Login";
 // import hotels_data from "./hotels_data";
@@ -26,7 +26,8 @@ const router = createBrowserRouter(
             <Route path="/" element={<Home />} />
             <Route path="/browse" element={<BrowsePage />} />
             <Route path="/hotel" element={<Hotel />} />
-            <Route path="/add-offer" element={<AddOffer />} />
+            <Route path="/add-offer" element={<OfferDetailsForm />} />
+            {/* <Route path="/edit" element={<EditOffer />} /> */}
             <Route path="/my-offers" element={<MyOffers />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
