@@ -296,6 +296,15 @@ b {
     text-align: center;
 }
 
+.sort-choice {
+    width: 20%;
+    padding: 8px;
+    border: 1px solid var(--primary-dark);
+    border-radius: var(--radius-medium);
+    background-color: transparent;
+    text-align: center;
+}
+
 .searchbar:focus {
     outline: 1px solid var(--hover);
     transition: var(--transition);

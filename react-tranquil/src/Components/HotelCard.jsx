@@ -4,18 +4,13 @@ import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const HotelCard = ({ id, name, description, city, stars, price, imageURL }) => {
+const HotelCard = ({ id, name, description, location, stars, price, imageURL }) => {
     const navigate = useNavigate();
 
     const handleOfferClick = () => {
         navigate("/hotel", {
             state: {
                 id: id,
-                name: name,
-                description: description,
-                city: city,
-                stars: stars,
-                price: price,
             },
         });
     };
@@ -26,7 +21,7 @@ const HotelCard = ({ id, name, description, city, stars, price, imageURL }) => {
                 className="card-image browse-image"
                 style={{ backgroundImage: `url(${imageURL})` }}
             >
-                <p className="chip">{city}</p>
+                <p className="chip">{location}</p>
                 <p className="chip heart">
                     <FontAwesomeIcon icon={faHeart} />
                 </p>

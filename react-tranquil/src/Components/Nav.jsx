@@ -20,7 +20,7 @@ const Nav = () => {
                     </a>
                 </li>
                 <li>
-                    <a className="nav-link" href="/add-offer">
+                    <a className="nav-link" href="/edit-offer">
                         Add new offers
                     </a>
                 </li>

@@ -29,7 +29,7 @@ const Hotel = () => {
     }, [offer, user]);
 
     const handleEdit = () => {
-        navigate("/add-offer", { state: { ...offer, id: offerId } });
+        navigate("/edit-offer", { state: { ...offer, id: offerId } });
     };
 
     return (
