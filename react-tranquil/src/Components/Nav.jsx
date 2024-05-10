@@ -30,7 +30,7 @@ const Nav = () => {
                     </a>
                 </li>
                 <li>
-                    <a className="nav-link" href="#">
+                    <a className="nav-link" href="" >
                         Favorites
                     </a>
                 </li>

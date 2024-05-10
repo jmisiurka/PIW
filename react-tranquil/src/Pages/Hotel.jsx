@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
+import { faEnvelope, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { useUser } from "../data/userService";
 import { readOfferById } from "../data/offerService";
 import { useEffect, useState } from "react";
@@ -46,6 +46,14 @@ const Hotel = () => {
             <section className="hotel-info">
                 <article className="hotel-details">
                     <p>
+                    {owner && (
+                            <button
+                                className="button primary"
+                                onClick={handleEdit}
+                            >
+                                Edit hotel info <FontAwesomeIcon icon={faPenToSquare} />
+                            </button>
+                        )}
                         <b>Location: </b>
                         {offer.location}
                         <br />
@@ -65,14 +73,6 @@ const Hotel = () => {
                         >
                             Contact <FontAwesomeIcon icon={faEnvelope} />
                         </button>
-                        {owner && (
-                            <button
-                                className="button primary"
-                                onClick={handleEdit}
-                            >
-                                Edit hotel info
-                            </button>
-                        )}
                     </p>
                 </article>
                 <article className="hotel-photos">
