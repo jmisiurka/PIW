@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
 export const auth = getAuth(app);
-// export const firestore = getFirestore(app);
-export const firestore = getFirestore();
-connectFirestoreEmulator(firestore, "127.0.0.1", 8080);
+export const firestore = getFirestore(app);
+// export const firestore = getFirestore();
+// connectFirestoreEmulator(firestore, "127.0.0.1", 8080);
 export const storage = getStorage(app);
