@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAqBe5oDIOgPuWMx1cpwdfnvFIBDksJJ0o",
@@ -16,4 +17,7 @@ const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
 export const auth = getAuth(app);
-export const firestore = getFirestore(app);
+// export const firestore = getFirestore(app);
+export const firestore = getFirestore();
+connectFirestoreEmulator(firestore, "127.0.0.1", 8080);
+export const storage = getStorage(app);

@@ -20,7 +20,7 @@ const MyOffers = () => {
                     </p>
                 </article>
             </section>
-            <Browse hotels={offers} />
+            <Browse/>
         </div>
     );
 };

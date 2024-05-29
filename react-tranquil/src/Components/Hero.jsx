@@ -1,6 +1,9 @@
-import arrow from "../Assets/Arrow.svg"
+import arrow from "../Assets/Arrow.svg";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+    const navigate = useNavigate();
+
     return (
         <section id="hero" className="grid hero-section">
             <article className="hero-details">
@@ -13,15 +16,25 @@ const Hero = () => {
                 </p>
                 <div className="hero-cards">
                     <div className="card-image">
-                        <p className="chip">
-                            New hotels{" "}
-                            <img src={arrow} alt="arrow" />
+                        <p
+                            className="chip"
+                            onClick={() =>
+                                navigate("/browse", { state: { sort: "date" } })
+                            }
+                        >
+                            New hotels <img src={arrow} alt="arrow" />
                         </p>
                     </div>
                     <div className="card-image">
-                        <p className="chip">
-                            Best reviews{" "}
-                            <img src={arrow} alt="arrow" />
+                        <p
+                            className="chip"
+                            onClick={() =>
+                                navigate("/browse", {
+                                    state: { sort: "rating" },
+                                })
+                            }
+                        >
+                            Best reviews <img src={arrow} alt="arrow" />
                         </p>
                     </div>
                 </div>

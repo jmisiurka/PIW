@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom';
-import logo from '../Assets/logo.svg'
-import { logout, useUser } from '../data/userService';
+import { NavLink } from "react-router-dom";
+import logo from "../Assets/logo.svg";
+import { logout, useUser } from "../data/userService";
 
 const Nav = () => {
     const user = useUser();
@@ -30,12 +30,20 @@ const Nav = () => {
                     </a>
                 </li>
                 <li>
-                    <a className="nav-link" href="" >
+                    <a className="nav-link" href="/favorites">
                         Favorites
                     </a>
                 </li>
-                {!!user || <NavLink to="/login" className="button primary">Login</NavLink>}
-                {!!user && <button className="button primary" onClick={logout}>Log out {user?.displayName}</button>}
+                {!!user || (
+                    <NavLink to="/login" className="button primary">
+                        Login
+                    </NavLink>
+                )}
+                {!!user && (
+                    <button className="button primary" onClick={logout}>
+                        Log out {user?.displayName}
+                    </button>
+                )}
             </ul>
             <button className="button primary hidden">Menu</button>
         </nav>

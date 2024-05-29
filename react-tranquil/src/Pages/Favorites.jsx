@@ -1,21 +1,18 @@
-import { useOutletContext } from "react-router-dom";
 import Browse from "../Components/Browse";
 
-const BrowsePage = () => {
-    // const [offers, setOffers] = useOutletContext();
-
+const Favorites = () => {
     return (
         <div>
             <section className="page-title">
                 <article>
                     <p className="title-large">
-                        Welcome, your tranquillity oasis awaits
+                        Your favorite offers
                     </p>
                 </article>
             </section>
-            <Browse favorites="false" />
+            <Browse favorites={true} />
         </div>
     );
 };
 
-export default BrowsePage;
+export default Favorites;

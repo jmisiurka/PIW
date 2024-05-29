@@ -7,7 +7,6 @@ import Hotel from "./Pages/Hotel";
 import OfferDetailsForm from "./Pages/OfferDetailsForm";
 import MyOffers from "./Pages/MyOffers";
 import Login from "./Pages/Login";
-// import hotels_data from "./hotels_data";
 import {
     createBrowserRouter,
     Route,
@@ -15,10 +14,10 @@ import {
     Outlet,
     RouterProvider,
 } from "react-router-dom";
-import { useEffect, useState } from "react";
 import SignUp from "./Pages/SignUp";
-import { readOffers } from "./data/offerService";
 import { useUser } from "./data/userService";
+import { FavProvider } from "./contexts/favorites";
+import Favorites from "./Pages/Favorites";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -30,22 +29,28 @@ const router = createBrowserRouter(
             <Route path="/my-offers" element={<MyOffers />} />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/favorites" element={<Favorites />} />
         </Route>
     )
 );
 
-function AppLayout() {
-    const [offers, setOffers] = useState([]);
+const InnerLayout = () => {
     const user = useUser();
-
-    useEffect(() => {
-        readOffers().then((docs) => setOffers(docs));
-    }, [user]);
 
     return (
         <div>
             <Nav />
-            <Outlet id="outlet" context={[offers, setOffers]} />
+            <Outlet id="outlet" />
+        </div>
+    );
+};
+
+function AppLayout() {
+    return (
+        <div>
+                <FavProvider>
+                    <InnerLayout />
+                </FavProvider>
         </div>
     );
 }

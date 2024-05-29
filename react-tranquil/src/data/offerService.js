@@ -59,6 +59,24 @@ export const readOfferById = async (id) => {
     return docSnap.data();
 };
 
+export const readMultipleOffersById = async (ids) => {
+    const offers = [];
+
+    const offerCollection = collection(firestore, "offers");
+    const user = auth?.currentUser;
+
+    const q = query(offerCollection);
+    const results = await getDocs(q);
+
+    results.forEach((doc) => {
+        if (ids.some((id) => id === doc.id)) {
+            offers.push({ id: doc.id, ...doc.data() });
+        }
+    });
+
+    return offers;
+};
+
 export const readOffers = async () => {
     const offers = [];
 

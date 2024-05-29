@@ -1,33 +1,46 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HotelCard from "./HotelCard";
-import { readOffers } from "../data/offerService";
+import { readMultipleOffersById, readOffers } from "../data/offerService";
 import { useUser } from "../data/userService";
+import FavContext from "../contexts/favorites";
+import { useLocation } from "react-router-dom";
 
-const Browse = (hotels) => {
+const Browse = ({ favorites = false, sort }) => {
     const [query, setQuery] = useState("");
-    const [sortBy, setSortBy] = useState("date");
+    const [sortBy, setSortBy] = useState(useLocation().state?.sort || "date");
     const [offersHTML, setOffersHTML] = useState([]);
-    const [offers, setOffers] = useState([]);
 
+    const { favoritesState, favoritesDispatch } = useContext(FavContext);
+
+    const [offersState, setOffers] = useState([]);
     const user = useUser();
 
     useEffect(() => {
         readOffers().then((docs) => setOffers(docs));
-    }, [user]);
+    }, [favorites]);
+
+    console.log(useLocation());
 
     const handleSearch = (e) => {
         setQuery(e.target.value);
     };
 
     useEffect(() => {
-        // without it it crashes on all pages other than browse
-        if (hotels.hotels == null) {
-            return null;
+        let displayedOffers = [];
+
+        if (favorites === true) {
+            offersState.forEach((offer) => {
+                if (favoritesState.favorites.some((id) => id === offer.id)) {
+                    displayedOffers.push(offer);
+                }
+            });
+        } else {
+            console.log(offersState);
+            displayedOffers = offersState;
+            console.log(displayedOffers);
         }
 
-        console.log(sortBy);
-
-        const HTML = hotels.hotels
+        const HTML = displayedOffers
             .filter(
                 (it) =>
                     it.name.includes(query) ||
@@ -62,7 +75,7 @@ const Browse = (hotels) => {
             ));
 
         setOffersHTML(HTML);
-    }, [sortBy, query, hotels]);
+    }, [sortBy, query, offersState, favoritesState, favorites]);
 
     const handleSortChange = (e) => {
         setSortBy(e.target.value);
@@ -84,6 +97,7 @@ const Browse = (hotels) => {
                     id="sort"
                     className="sort-choice"
                     onChange={handleSortChange}
+                    value={sortBy}
                 >
                     <option value="date">Date</option>
                     <option value="name">Name</option>

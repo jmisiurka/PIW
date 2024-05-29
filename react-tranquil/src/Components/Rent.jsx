@@ -2,7 +2,7 @@ import arrow from "../Assets/Arrow.svg"
 
 const Rent = () => {
     return (
-        <section id="rent" class="footer grid">
+        <section id="rent" className="footer grid">
             <div className="card-image"></div>
             <article className="footer-details">
                 <p className="title-large">Rent with us!</p>
