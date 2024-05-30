@@ -99,11 +99,12 @@ function Chat() {
     const handleSendMessage = async () => {
         const message = input.current?.value;
 
-        if (user?.uid === null) {
-            return;
-        }
-
-        if (message.trim() === "") {
+        // prevent sending empty message or message to non existing user
+        if (
+            user?.uid === null ||
+            message.trim() === "" ||
+            anotherUser.uid === ""
+        ) {
             return;
         }
 

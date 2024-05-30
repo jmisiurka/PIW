@@ -41,7 +41,10 @@ const HotelCard = ({
                     <button
                         className="chip heart"
                         onClick={() =>
-                            favoritesDispatch({ type: "REMOVE_FROM_FAV", payload: id })
+                            favoritesDispatch({
+                                type: "REMOVE_FROM_FAV",
+                                payload: id,
+                            })
                         }
                     >
                         <FontAwesomeIcon icon={fullHeart} />
@@ -51,7 +54,10 @@ const HotelCard = ({
                     <button
                         className="chip heart"
                         onClick={() =>
-                            favoritesDispatch({ type: "ADD_TO_FAV", payload: id })
+                            favoritesDispatch({
+                                type: "ADD_TO_FAV",
+                                payload: id,
+                            })
                         }
                     >
                         <FontAwesomeIcon icon={emptyHeart} />
