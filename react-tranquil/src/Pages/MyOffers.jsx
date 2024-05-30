@@ -7,20 +7,14 @@ const MyOffers = () => {
     const [offers, setOffers] = useState([]);
     const user = useUser();
 
-    useEffect(() => {
-        readMyOffers().then((docs) => setOffers(docs));
-    }, [user]);
-
     return (
         <div>
             <section className="page-title">
                 <article>
-                    <p className="title-large">
-                        Your offers
-                    </p>
+                    <p className="title-large">Your offers</p>
                 </article>
             </section>
-            <Browse/>
+            <Browse mode="my" />
         </div>
     );
 };

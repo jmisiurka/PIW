@@ -5,7 +5,7 @@ import { faHeart as emptyHeart } from "@fortawesome/free-regular-svg-icons";
 import { faEnvelope, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { useUser } from "../data/userService";
 import { readOfferById } from "../data/offerService";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import FavContext from "../contexts/favorites";
 import Toast from "../Components/Toast";
 
@@ -15,8 +15,9 @@ const Hotel = () => {
     const [toast, setToast] = useState({ message: "", visible: false });
     const { favoritesState, favoritesDispatch } = useContext(FavContext);
     const user = useUser();
-
+    
     const [modalShown, setModalShown] = useState(false);
+    const inputRef = useRef(null);
 
     const offerId = useLocation().state.id;
 
@@ -42,7 +43,10 @@ const Hotel = () => {
     };
 
     const handleSendMessage = () => {
-        setToast({
+      const message = inputRef.current.value;  
+      
+      console.log(message);
+      setToast({
             message: "Your message has been sent!",
             visible: true,
         });
@@ -71,7 +75,7 @@ const Hotel = () => {
                             <p className="text-small">
                                 You are contacting {offer.name}
                             </p>
-                            <textarea className="contact-textbox"></textarea>
+                            <textarea className="contact-textbox" ref={inputRef}></textarea>
                         </div>
                         <div className="modal-buttons">
                             <button

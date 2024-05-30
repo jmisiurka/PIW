@@ -18,6 +18,7 @@ import SignUp from "./Pages/SignUp";
 import { useUser } from "./data/userService";
 import { FavProvider } from "./contexts/favorites";
 import Favorites from "./Pages/Favorites";
+import Chat from "./Pages/Chat";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/chat" element={<Chat />}/>
         </Route>
     )
 );

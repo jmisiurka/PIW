@@ -34,6 +34,11 @@ const Nav = () => {
                         Favorites
                     </a>
                 </li>
+                <li>
+                    <a className="nav-link" href="/chat">
+                        Chat
+                    </a>
+                </li>
                 {!!user || (
                     <NavLink to="/login" className="button primary">
                         Login

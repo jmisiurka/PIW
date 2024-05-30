@@ -1,46 +1,47 @@
 import { useContext, useEffect, useState } from "react";
 import HotelCard from "./HotelCard";
-import { readMultipleOffersById, readOffers } from "../data/offerService";
+import {
+    readMultipleOffersById,
+    readMyOffers,
+    readOffers,
+} from "../data/offerService";
 import { useUser } from "../data/userService";
 import FavContext from "../contexts/favorites";
 import { useLocation } from "react-router-dom";
 
-const Browse = ({ favorites = false, sort }) => {
+const Browse = ({ mode = "all", sort }) => {
     const [query, setQuery] = useState("");
     const [sortBy, setSortBy] = useState(useLocation().state?.sort || "date");
     const [offersHTML, setOffersHTML] = useState([]);
 
     const { favoritesState, favoritesDispatch } = useContext(FavContext);
 
-    const [offersState, setOffers] = useState([]);
+    const [offers, setOffers] = useState([]);
     const user = useUser();
 
     useEffect(() => {
-        readOffers().then((docs) => setOffers(docs));
-    }, [favorites]);
-
-    console.log(useLocation());
+        switch (mode) {
+            case "favorites":
+                readMultipleOffersById(favoritesState.favorites).then((docs) =>
+                    setOffers(docs)
+                );
+                break;
+            case "my":
+                readMyOffers().then((docs) => setOffers(docs));
+                break;
+            case "all":
+            default:
+                readOffers().then((docs) => setOffers(docs));
+                break;
+        }
+    }, [mode, favoritesState, user]);
 
     const handleSearch = (e) => {
         setQuery(e.target.value);
     };
 
     useEffect(() => {
-        let displayedOffers = [];
-
-        if (favorites === true) {
-            offersState.forEach((offer) => {
-                if (favoritesState.favorites.some((id) => id === offer.id)) {
-                    displayedOffers.push(offer);
-                }
-            });
-        } else {
-            console.log(offersState);
-            displayedOffers = offersState;
-            console.log(displayedOffers);
-        }
-
-        const HTML = displayedOffers
+        const HTML = offers
             .filter(
                 (it) =>
                     it.name.includes(query) ||
@@ -75,7 +76,7 @@ const Browse = ({ favorites = false, sort }) => {
             ));
 
         setOffersHTML(HTML);
-    }, [sortBy, query, offersState, favoritesState, favorites]);
+    }, [sortBy, query, offers]);
 
     const handleSortChange = (e) => {
         setSortBy(e.target.value);

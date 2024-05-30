@@ -10,7 +10,7 @@ const Favorites = () => {
                     </p>
                 </article>
             </section>
-            <Browse favorites={true} />
+            <Browse mode="favorites" />
         </div>
     );
 };

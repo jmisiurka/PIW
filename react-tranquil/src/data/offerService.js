@@ -69,7 +69,7 @@ export const readMultipleOffersById = async (ids) => {
     const results = await getDocs(q);
 
     results.forEach((doc) => {
-        if (ids.some((id) => id === doc.id)) {
+      if (ids.some((id) => id === doc.id)) {
             offers.push({ id: doc.id, ...doc.data() });
         }
     });
